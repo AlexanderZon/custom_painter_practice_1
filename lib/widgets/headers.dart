@@ -265,12 +265,12 @@ class _HeaderOlaGradientePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
 
-    final Rect rect = new Rect.fromCircle(
-      center: Offset(0.0, 155.0), 
+    final Rect rect = Rect.fromCircle(
+      center: const Offset(0.0, 155.0), 
       radius: 180
     );
 
-    final Gradient gradient = new LinearGradient(
+    const Gradient gradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: <Color>[
@@ -287,11 +287,11 @@ class _HeaderOlaGradientePainter extends CustomPainter {
 
     final paint = Paint()..shader = gradient.createShader(rect);
     // Propiedades
-    paint.color = Color.fromARGB(255, 222, 8, 48);
+    paint.color = const Color.fromARGB(255, 222, 8, 48);
     paint.style = PaintingStyle.fill; // .fill
     paint.strokeWidth = 2;
 
-    final path = new Path();
+    final path = Path();
 
     // Dibujar con el path y el paint
     // Ola superior
