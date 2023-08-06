@@ -1,7 +1,4 @@
-import 'package:custom_painter_practice_1/challenges/animated_square_page.dart';
-import 'package:custom_painter_practice_1/pages/animations_page.dart';
-import 'package:custom_painter_practice_1/pages/circular_graphics_page.dart';
-import 'package:custom_painter_practice_1/pages/headers_page.dart';
+import 'package:custom_painter_practice_1/pages/slideshow_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -14,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      home: CircularGraphicsPage(),
+      home: SlideshowPage(),
     );
   }
 }
