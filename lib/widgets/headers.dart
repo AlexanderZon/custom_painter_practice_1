@@ -144,7 +144,8 @@ class _HeaderPicoPainter extends CustomPainter {
     final double header_point_height = 50;
 
     path.lineTo(0, size.height * header_height);
-    path.lineTo(size.width * 0.5, (size.height * header_height) + header_point_height);
+    path.lineTo(
+        size.width * 0.5, (size.height * header_height) + header_point_height);
     path.lineTo(size.width, size.height * header_height);
     path.lineTo(size.width, 0);
 
@@ -186,7 +187,8 @@ class _HeaderCurvoPainter extends CustomPainter {
     // Dibujar con el path y el paint
 
     path.lineTo(0, size.height * 0.25);
-    path.quadraticBezierTo(size.width * 0.5, size.height * 0.40, size.width, size.height * 0.25);
+    path.quadraticBezierTo(
+        size.width * 0.5, size.height * 0.40, size.width, size.height * 0.25);
     path.lineTo(size.width, 0);
 
     canvas.drawPath(path, paint);
@@ -199,7 +201,9 @@ class _HeaderCurvoPainter extends CustomPainter {
 }
 
 class HeaderOla extends StatelessWidget {
-  const HeaderOla({super.key});
+  final Color color;
+
+  const HeaderOla({super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -207,18 +211,22 @@ class HeaderOla extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
-        painter: _HeaderOlaPainter(),
+        painter: _HeaderOlaPainter(color),
       ),
     );
   }
 }
 
 class _HeaderOlaPainter extends CustomPainter {
+  final Color color;
+
+  _HeaderOlaPainter(this.color);
+
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
     // Propiedades
-    paint.color = Color(0xff615AAB);
+    paint.color = color;
     paint.style = PaintingStyle.fill; // .fill
     paint.strokeWidth = 2;
 
@@ -227,8 +235,10 @@ class _HeaderOlaPainter extends CustomPainter {
     // Dibujar con el path y el paint
     // Ola superior
     path.lineTo(0, size.height * 0.25);
-    path.quadraticBezierTo(size.width * 0.25, size.height * 0.30, size.width * 0.5, size.height * 0.25);
-    path.quadraticBezierTo(size.width * 0.75, size.height * 0.20, size.width, size.height * 0.25);
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.30,
+        size.width * 0.5, size.height * 0.25);
+    path.quadraticBezierTo(
+        size.width * 0.75, size.height * 0.20, size.width, size.height * 0.25);
     path.lineTo(size.width, 0);
 
     // Ola inferior
@@ -246,6 +256,7 @@ class _HeaderOlaPainter extends CustomPainter {
     return true;
   }
 }
+
 class HeaderOlaGradiente extends StatelessWidget {
   const HeaderOlaGradiente({super.key});
 
@@ -264,26 +275,22 @@ class HeaderOlaGradiente extends StatelessWidget {
 class _HeaderOlaGradientePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-
-    final Rect rect = Rect.fromCircle(
-      center: const Offset(0.0, 155.0), 
-      radius: 180
-    );
+    final Rect rect =
+        Rect.fromCircle(center: const Offset(0.0, 155.0), radius: 180);
 
     const Gradient gradient = LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: <Color>[
-        Color(0xff6D05E8),
-        Color(0xffC012FF),
-        Color(0xff6D05FA),
-      ],
-      stops: [
-        0.0,
-        0.5,
-        1.0
-      ]
-    );
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: <Color>[
+          Color(0xff6D05E8),
+          Color(0xffC012FF),
+          Color(0xff6D05FA),
+        ],
+        stops: [
+          0.0,
+          0.5,
+          1.0
+        ]);
 
     final paint = Paint()..shader = gradient.createShader(rect);
     // Propiedades
@@ -296,8 +303,10 @@ class _HeaderOlaGradientePainter extends CustomPainter {
     // Dibujar con el path y el paint
     // Ola superior
     path.lineTo(0, size.height * 0.25);
-    path.quadraticBezierTo(size.width * 0.25, size.height * 0.30, size.width * 0.5, size.height * 0.25);
-    path.quadraticBezierTo(size.width * 0.75, size.height * 0.20, size.width, size.height * 0.25);
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.30,
+        size.width * 0.5, size.height * 0.25);
+    path.quadraticBezierTo(
+        size.width * 0.75, size.height * 0.20, size.width, size.height * 0.25);
     path.lineTo(size.width, 0);
 
     // Ola inferior

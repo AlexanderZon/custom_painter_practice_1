@@ -13,15 +13,9 @@ class SlideShowPage extends StatelessWidget {
       child: Scaffold(
         body: Container(
           child: Center(
-            child: Column(
-              children: [
-                Expanded(
-                  child: _Slides()
-                ),
-                _Dots()
-              ],
-            )
-          ),
+              child: Column(
+            children: [Expanded(child: _Slides()), _Dots()],
+          )),
         ),
       ),
     );
@@ -36,7 +30,6 @@ class _Slides extends StatefulWidget {
 }
 
 class _SlidesState extends State<_Slides> {
-
   final pageViewController = new PageController();
 
   @override
@@ -44,10 +37,11 @@ class _SlidesState extends State<_Slides> {
     // TODO: implement initState
     super.initState();
     pageViewController.addListener(() {
-      print('Página actual: ${ pageViewController.page }');
-      
+      print('Página actual: ${pageViewController.page}');
+
       // Actualizar el SliderMondel
-      Provider.of<SliderModel>(context, listen: false).currentPage = pageViewController.page!;
+      Provider.of<SliderModel>(context, listen: false).currentPage =
+          pageViewController.page!;
     });
   }
 
@@ -55,6 +49,7 @@ class _SlidesState extends State<_Slides> {
   void dispose() {
     // TODO: implement dispose
     pageViewController.dispose();
+    super.dispose();
   }
 
   @override
@@ -80,14 +75,12 @@ class _Slide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: double.infinity,
-      padding: EdgeInsets.all(30),
-      child: SvgPicture.asset(svg)
-    );
+        width: double.infinity,
+        height: double.infinity,
+        padding: EdgeInsets.all(30),
+        child: SvgPicture.asset(svg));
   }
 }
-
 
 class _Dots extends StatelessWidget {
   const _Dots({super.key});
@@ -99,25 +92,19 @@ class _Dots extends StatelessWidget {
       height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _Dot(0),
-          _Dot(1),
-          _Dot(2)
-        ],
+        children: [_Dot(0), _Dot(1), _Dot(2)],
       ),
     );
   }
 }
 
 class _Dot extends StatelessWidget {
-  
   final int index;
-  
+
   const _Dot(this.index);
 
   @override
   Widget build(BuildContext context) {
-
     final pageViewIndex = Provider.of<SliderModel>(context).currentPage;
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
@@ -125,10 +112,10 @@ class _Dot extends StatelessWidget {
       height: 12,
       margin: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
-        color: (pageViewIndex >= index - 0.5 && pageViewIndex < index + 0.5) 
-                  ? Colors.blue : Colors.grey,
-        shape: BoxShape.circle
-      ),
+          color: (pageViewIndex >= index - 0.5 && pageViewIndex < index + 0.5)
+              ? Colors.blue
+              : Colors.grey,
+          shape: BoxShape.circle),
     );
   }
 }
