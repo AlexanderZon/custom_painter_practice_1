@@ -1,10 +1,17 @@
+import 'package:custom_painter_practice_1/models/layout_model.dart';
 import 'package:custom_painter_practice_1/pages/launcher_page.dart';
+import 'package:custom_painter_practice_1/pages/launcher_tablet_page.dart';
 import 'package:custom_painter_practice_1/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(ChangeNotifierProvider(
-    create: (_) => ThemeChanger(2), child: const MyApp()));
+void main() => runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeChanger(2)),
+        ChangeNotifierProvider(create: (_) => LayoutModel()),
+      ],
+      child: const MyApp(),
+    ));
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,7 +23,16 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      home: LauncherPage(),
+      home: OrientationBuilder(
+        builder: (context, orientation) {
+          final screenSize = MediaQuery.of(context).size;
+          if (screenSize.width > 500) {
+            return LauncherTabletPage();
+          } else {
+            return LauncherPage();
+          }
+        },
+      ),
     );
   }
 }

@@ -26,10 +26,13 @@ class _PinterestLocatedMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     final viewMenu = Provider.of<_MenuModel>(context).visible;
     final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
 
+    if (width > 500) {
+      width = width - 300;
+    }
     return Positioned(
         bottom: 30,
         child: Container(
@@ -99,20 +102,31 @@ class _PinterestGridState extends State<_PinterestGrid> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLarge = MediaQuery.of(context).size.width > 500;
+    final shortPattern = [
+      QuiltedGridTile(2, 2),
+      QuiltedGridTile(3, 2),
+      QuiltedGridTile(2, 2),
+      QuiltedGridTile(3, 2),
+      QuiltedGridTile(2, 2),
+    ];
+    final largePattern = [
+      QuiltedGridTile(2, 2),
+      QuiltedGridTile(3, 2),
+      QuiltedGridTile(2, 2),
+      QuiltedGridTile(3, 2),
+      QuiltedGridTile(3, 2),
+      QuiltedGridTile(2, 2),
+    ];
+
     return GridView.custom(
       controller: controller,
       gridDelegate: SliverQuiltedGridDelegate(
-        crossAxisCount: 4,
-        mainAxisSpacing: 4,
+        crossAxisCount: isLarge ? 6 : 4,
+        mainAxisSpacing: isLarge ? 5 : 4,
         crossAxisSpacing: 0,
         repeatPattern: QuiltedGridRepeatPattern.inverted,
-        pattern: [
-          QuiltedGridTile(2, 2),
-          QuiltedGridTile(3, 2),
-          QuiltedGridTile(2, 2),
-          QuiltedGridTile(3, 2),
-          QuiltedGridTile(2, 2),
-        ],
+        pattern: isLarge ? largePattern : shortPattern,
       ),
       childrenDelegate: SliverChildBuilderDelegate(
           (context, index) => _PinterestItem(index: index),

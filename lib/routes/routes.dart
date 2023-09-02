@@ -1,4 +1,4 @@
-import 'package:custom_painter_practice_1/labs/slide_show_page.dart';
+import 'package:custom_painter_practice_1/pages/slideshow_page.dart';
 import 'package:custom_painter_practice_1/pages/animations_page.dart';
 import 'package:custom_painter_practice_1/pages/circular_graphics_page.dart';
 import 'package:custom_painter_practice_1/pages/emergency_page.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 final pageRoutes = <_Route>[
-  _Route(FontAwesomeIcons.slideshare, 'Notification Page', SlideShowPage()),
+  _Route(FontAwesomeIcons.slideshare, 'Slideshow Page', SlideshowPage()),
   _Route(FontAwesomeIcons.ambulance, 'Emergencias', EmergencyPage()),
   _Route(FontAwesomeIcons.heading, 'Encabezados', HeadersPage()),
   _Route(FontAwesomeIcons.peopleCarry, 'Cuadro animado', CuadradoAnimado()),

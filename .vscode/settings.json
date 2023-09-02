@@ -1,0 +1,6 @@
+{
+    "html.format.wrapLineLength": 0,
+    "editor.wrappingStrategy": "advanced",
+    "editor.wrappingIndent": "indent",
+    "editor.wordWrapColumn": 10000
+}

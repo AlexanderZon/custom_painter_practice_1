@@ -62,14 +62,15 @@ class ThemeChanger with ChangeNotifier {
     _currentTheme = ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xff16202B),
         secondaryHeaderColor: Color(0xff48A0EB),
-        primaryColor: Colors.white,
-        primaryColorDark: Colors.white,
+        primaryColor: Colors.pink,
+        primaryColorDark: Colors.pink,
         textTheme: TextTheme(bodySmall: TextStyle(color: Colors.white)));
     return _currentTheme;
   }
 
   ThemeData setCurrentThemeLight() {
-    _currentTheme = ThemeData.light();
+    _currentTheme = ThemeData.light()
+        .copyWith(primaryColor: Colors.pink, primaryColorDark: Colors.pink);
     return _currentTheme;
   }
 }

@@ -1,22 +1,41 @@
+import 'package:custom_painter_practice_1/models/layout_model.dart';
 import 'package:custom_painter_practice_1/routes/routes.dart';
 import 'package:custom_painter_practice_1/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-class LauncherPage extends StatelessWidget {
-  const LauncherPage({super.key});
+class LauncherTabletPage extends StatelessWidget {
+  const LauncherTabletPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
+    final appTheme = Provider.of<ThemeChanger>(context);
+    final layoutModel = Provider.of<LayoutModel>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Diseños Flutter - Telefono'),
-        backgroundColor: appTheme.primaryColor,
+        title: Text('Diseños Flutter -R Tablet'),
+        backgroundColor: appTheme.currentTheme.primaryColor,
       ),
       drawer: _MenuPrincipal(),
-      body: _ListaOpciones(),
+      // body: _ListaOpciones(),
+      body: Row(
+        children: [
+          Container(
+            width: 300,
+            height: double.infinity,
+            child: _ListaOpciones(),
+          ),
+          Container(
+            width: 1,
+            height: double.infinity,
+            color: appTheme.darkTheme
+                ? Colors.grey
+                : appTheme.currentTheme.secondaryHeaderColor,
+          ),
+          Expanded(child: layoutModel.currentPage)
+        ],
+      ),
     );
   }
 }
@@ -41,11 +60,13 @@ class _ListaOpciones extends StatelessWidget {
         title: Text(pageRoutes[index].title),
         trailing: Icon(Icons.chevron_right, color: appTheme.primaryColorDark),
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) {
-              return pageRoutes[index].page;
-            },
-          ));
+          // Navigator.push(context, MaterialPageRoute(
+          //   builder: (context) {
+          //     return pageRoutes[index].page;
+          //   },
+          // ));
+          final layoutModel = Provider.of<LayoutModel>(context, listen: false);
+          layoutModel.currentPage = pageRoutes[index].page;
         },
       ),
     );
